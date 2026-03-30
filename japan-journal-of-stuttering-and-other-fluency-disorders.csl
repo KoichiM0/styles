@@ -25,7 +25,7 @@
     <eissn>2760-1749</eissn>
     <summary xml:lang="ja">この文献引用スタイルファイルは、日本吃音・流暢性障害学会の公式論文誌である吃音・流暢性障害学研究(JSSFD)のために、引用スタイル言語 (CSL) で書かれたものです。日本語の著者名のソート順については、Extra (その他)のフィールド内に"original-author: "という項目を作り、ローマ字化した著者名を";"で区切って記入すれば、それがソートに使われます（ソート順以外には影響しません）。"original-author" (Original Author) を本来の意味で使っている文献（歌等）については、日本語のものでなくても日本語文献として分類され、ソート順も正しくなくなる可能性があります。なお、多人数著者の論文等で省略に「et al.」が使われるか「他」が使われるかは、「エクスポート」の設定の「言語：」の設定を「English」にするか「日本語」にするかによって決まります。文献ごとに自動的に切りかえることはできません。In order to fulfill the required sort order of Japanese author names in the transliterated alphabetic order, it uses a variable "original-author" in the Extra field, which may conflict the original use of "Original Author" in some bibliografic entries.</summary>
     <published>2025-05-02T09:00:00+09:00</published>
-    <updated>2025-09-04T19:00:00+09:00</updated>
+    <updated>2026-02-12T11:30:00+09:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -50,7 +50,7 @@
     </date>
     <terms>
       <!-- defaultのjaのlocale設定では"et-al"が「ほか」になるので、「他」とする等の修正。 -->
-      <term name="et-al"> 他</term>
+      <term name="et-al">他</term>
       <term name="personal-communication">バーソナル・コミュニケーション</term>
       <term name="podcast">ポドキャスト</term>
       <term name="album">アルバム</term>
@@ -896,8 +896,13 @@
               </choose>
             </if>
             <else-if type="speech paper-conference" match="any">
-              <!-- publisher-place removed to avoide duplicate place -->
-              <text variable="publisher"/>
+              <!-- publisher-place put in <if> to avoide duplicate place -->
+              <choose>
+                <if variable="publisher">
+                  <text variable="publisher-place" suffix=": "/>
+                  <text variable="publisher"/>
+                </if>
+              </choose>
             </else-if>
             <else>
               <group delimiter=": ">
@@ -1212,26 +1217,24 @@
             <text variable="publisher" suffix=", "/>
             <!-- broadcasting network name -->
           </if>
-          <else>
+          <else-if variable="event-place">
             <text variable="event-place" suffix=", "/>
+          </else-if>
+          <else>
+            <text variable="publisher-place" suffix=", "/>
           </else>
         </choose>
         <choose>
           <if variable="event-date" match="any">
-            <date variable="event-date" form="text" suffix="-">
-              <date-part name="year" form="long"/>
-            </date>
             <date variable="event-date" delimiter="-">
+              <date-part name="year" form="long"/>
               <date-part name="month" form="numeric-leading-zeros"/>
               <date-part name="day" form="numeric-leading-zeros"/>
             </date>
           </if>
           <else>
-            <date variable="issued" suffix="-">
-              <date-part name="year" form="long"/>
-              <!-- "long" to avoid month and day appearing even if only year is specified -->
-            </date>
             <date variable="issued" delimiter="-">
+              <date-part name="year" form="long"/>
               <date-part name="month" form="numeric-leading-zeros"/>
               <date-part name="day" form="numeric-leading-zeros"/>
             </date>
@@ -1327,7 +1330,7 @@
       <if type="article article-journal article-magazine article-newspaper dataset" match="any">
         <text variable="container-title" text-case="title"/>
       </if>
-      <else-if type="speech" match="any">
+      <else-if type="speech document report manuscript article" match="any">
         <choose>
           <if variable="collection-editor container-author editor" match="any">
             <text variable="container-title"/>
@@ -1340,9 +1343,12 @@
       <else-if type="bill legal_case legislation post-weblog webpage" match="none">
         <text variable="container-title"/>
       </else-if>
-      <else-if type="paper-conference broadcast post post-weblog webpage" match="any">
+      <else-if type="paper-conference broadcast post post-weblog webpage speech report" match="any">
         <text variable="event-title" suffix=", "/>
       </else-if>
+      <else>
+        <text variable="archive" suffix=", "/>
+      </else>
     </choose>
   </macro>
   <!-- After 'source', APA also prints publication history (original publication, reprint info, retraction info) -->
@@ -1578,8 +1584,13 @@
             <text macro="event-title"/>
             <text macro="container"/>
             <choose>
-              <if type="book review-book" match="any">
+              <if type="book review-book article" match="any">
                 <text macro="publisher"/>
+              </if>
+            </choose>
+            <choose>
+              <if type="speech">
+                <text variable="genre"/>
               </if>
             </choose>
           </group>
