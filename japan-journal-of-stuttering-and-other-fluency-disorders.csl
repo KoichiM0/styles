@@ -917,8 +917,8 @@
     </choose>
   </macro>
   <!-- end of name="publisher" -->
-  <macro name="event-title">
-    <choose>
+  <!-- ** not for CSL 1.0.1**; macro name="event-title" -->
+    <!-- ** not for CSL 1.0.1**; choose -->
       <!-- TODO: We expect "event-title" to be used,
            but processors and applications may not be updated yet.
            This macro ensures that either "event" or "event-title" can be accpeted.
@@ -926,11 +926,11 @@
       <!-- ** not for CSL 1.0.1**; if variable="event-title" -->
         <!-- ** not for CSL 1.0.1**; text variable="event-title"/ -->
       <!-- ** not for CSL 1.0.1**; /if -->
-      <if variable="event">
-        <text variable="event"/>
-      </if>
-    </choose>
-  </macro>
+      <!-- ** not for CSL 1.0.1**; if variable="event" -->
+        <!-- ** not for CSL 1.0.1**; text variable="event"/ -->
+      <!-- ** not for CSL 1.0.1**; /if -->
+    <!-- ** not for CSL 1.0.1**; /choose -->
+  <!-- ** not for CSL 1.0.1**; /macro -->
   <!-- end of name="event-title" -->
   <macro name="issued">
     <choose>
@@ -1352,46 +1352,6 @@
       </else>
     </choose>
   </macro>
-  <!-- After 'source', APA also prints publication history (original publication, reprint info, retraction info) -->
-  <macro name="publication-history">
-    <choose>
-      <if type="patent" match="none">
-        <group prefix="(" suffix=")">
-          <choose>
-            <if variable="references">
-              <!-- This provides the option for more elaborate description
-                   of publication history, such as full "reprinted" references
-                   (example 26) or retracted references -->
-              <text variable="references"/>
-            </if>
-            <else>
-              <choose>
-                <if variable="original-date">
-                  <group delimiter=" ">
-                    <text macro="original-published"/>
-                    <choose>
-                      <if is-uncertain-date="original-date">
-                        <group prefix="[" suffix="]" delimiter=" ">
-                          <text term="circa" form="short"/>
-                          <text macro="original-date"/>
-                        </group>
-                      </if>
-                      <else>
-                        <text macro="original-date"/>
-                      </else>
-                    </choose>
-                  </group>
-                </if>
-              </choose>
-            </else>
-          </choose>
-        </group>
-      </if>
-      <else>
-        <text variable="references" prefix="(" suffix=")"/>
-      </else>
-    </choose>
-  </macro>
   <macro name="legal-cites">
     <choose>
       <if type="legal_case">
@@ -1518,7 +1478,7 @@
       </else>
     </choose>
   </macro>
-  <!-- end of macro name="author-sort-string" -->
+  <!-- end of macro name="original-author-sort-string" -->
   <macro name="year-date">
     <choose>
       <if variable="issued">
@@ -1597,7 +1557,6 @@
           </group>
         </group>
         <text macro="access"/>
-        <text macro="publication-history"/>
       </group>
     </layout>
   </bibliography>
