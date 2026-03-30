@@ -51,12 +51,12 @@
     <terms>
       <!-- defaultのjaのlocale設定では"et-al"が「ほか」になるので、「他」とする等の修正。 -->
       <term name="et-al">他</term>
-      <term name="personal-communication">バーソナル・コミュニケーション</term>
-      <term name="podcast">ポドキャスト</term>
-      <term name="album">アルバム</term>
-      <term name="film">映画</term>
-      <term name="radio-broadcast">ラジオ放送</term>
-      <term name="television-broadcast">テレビ放送</term>
+      <!-- ** not for CSL 1.0.1**; term name="personal-communication">バーソナル・コミュニケーション</term  ** not for CSL 1.0.1** -->
+      <!-- ** not for CSL 1.0.1**; term name="podcast">ポドキャスト</term  ** not for CSL 1.0.1** -->
+      <!-- ** not for CSL 1.0.1**; term name="album">アルバム</term  ** not for CSL 1.0.1** -->
+      <!-- ** not for CSL 1.0.1**; term name="film">映画</term  ** not for CSL 1.0.1** -->
+      <!-- ** not for CSL 1.0.1**; term name="radio-broadcast">ラジオ放送</term  ** not for CSL 1.0.1** -->
+      <!-- ** not for CSL 1.0.1**; term name="television-broadcast">テレビ放送</term  ** not for CSL 1.0.1** -->
       <term name="at"/>
       <term name="in"/>
       <term name="retrieved"/>
@@ -212,7 +212,7 @@
           <substitute>
             <names variable="original-author"/>
             <names variable="author"/>
-            <names variable="performer"/>
+            <!-- ** not for CSL 1.0.1**; names variable="performer"/ -->
             <names variable="director"/>
             <names variable="translator">
               <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
@@ -233,13 +233,13 @@
           <substitute>
             <names variable="illustrator"/>
             <names variable="composer"/>
-            <names variable="guest"/>
-            <names variable="contributor"/>
-            <names variable="performer"/>
+            <!-- ** not for CSL 1.0.1**; names variable="guest"/ -->
+            <!-- ** not for CSL 1.0.1**; names variable="contributor"/ -->
+            <!-- ** not for CSL 1.0.1**; names variable="performer"/ -->
             <names variable="director"/>
-            <names variable="script-writer"/>
+            <!-- ** not for CSL 1.0.1**; names variable="script-writer"/ -->
             <!-- 脚本家 -->
-            <names variable="producer"/>
+            <!-- ** not for CSL 1.0.1**; names variable="producer"/ -->
             <names variable="interviewer"/>
             <choose>
               <if variable="container-title">
@@ -278,10 +278,10 @@
               <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
               <label form="short" prefix=" (" suffix=")" text-case="title"/>
             </names>
-            <names variable="producer">
-              <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
-              <label form="short" prefix=" (" suffix=")" text-case="title"/>
-            </names>
+            <!-- ** not for CSL 1.0.1**; names variable="producer" -->
+              <!-- ** not for CSL 1.0.1**; name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/ -->
+              <!-- ** not for CSL 1.0.1**; label form="short" prefix=" (" suffix=")" text-case="title"/ -->
+            <!-- ** not for CSL 1.0.1**; /names -->
             <names variable="recipient">
               <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
               <label form="short" prefix=" (" suffix=")" text-case="title"/>
@@ -351,7 +351,7 @@
           <substitute>
             <names variable="original-author"/>
             <names variable="author"/>
-            <names variable="performer"/>
+            <!-- ** not for CSL 1.0.1**; names variable="performer"/ -->
             <names variable="director"/>
             <names variable="translator"/>
             <choose>
@@ -385,16 +385,16 @@
             <!-- not in the namespace of purl.org/net/xbiblio/csl -->
             <!-- names variable="commenter"/ -->
             <!-- not in the namespace of purl.org/net/xbiblio/csl -->
-            <names variable="guest"/>
+            <!-- ** not for CSL 1.0.1**; names variable="guest"/ -->
             <!-- ゲスト -->
-            <names variable="contributor"/>
+            <!-- ** not for CSL 1.0.1**; names variable="contributor"/ -->
             <!-- 寄稿者名 -->
             <!-- names variable="cast member"/ -->
             <!-- キャスト, not in the namespace of purl.org/net/xbiblio/csl -->
             <!-- names variable="artist"/ -->
             <!-- not in the namespace of purl.org/net/xbiblio/csl -->
-            <names variable="performer"/>
-            <names variable="script-writer"/>
+            <!-- ** not for CSL 1.0.1**; names variable="performer"/ -->
+            <!-- ** not for CSL 1.0.1**; names variable="script-writer"/ -->
             <!-- 脚本家 -->
             <choose>
               <if variable="container-title">
@@ -414,7 +414,7 @@
             <names variable="interviewer"/>
             <names variable="director"/>
             <!-- 監督 -->
-            <names variable="producer"/>
+            <!-- ** not for CSL 1.0.1**; names variable="producer"/ -->
             <names variable="recipient"/>
             <choose>
               <if type="report" variable="publisher" match="all">
@@ -923,12 +923,12 @@
            but processors and applications may not be updated yet.
            This macro ensures that either "event" or "event-title" can be accpeted.
            Remove if procesor logic and application adoption can handle this. -->
-      <if variable="event-title">
-        <text variable="event-title"/>
-      </if>
-      <else>
+      <!-- ** not for CSL 1.0.1**; if variable="event-title" -->
+        <!-- ** not for CSL 1.0.1**; text variable="event-title"/ -->
+      <!-- ** not for CSL 1.0.1**; /if -->
+      <if variable="event">
         <text variable="event"/>
-      </else>
+      </if>
     </choose>
   </macro>
   <!-- end of name="event-title" -->
@@ -1001,9 +1001,9 @@
     <!--This should be localized -->
     <choose>
       <if type="bill legal_case legislation" match="any"/>
-      <else>
-        <text term="original-work-published" text-case="capitalize-first"/>
-      </else>
+      <!-- ** not for CSL 1.0.1**; else -->
+        <!-- ** not for CSL 1.0.1**; text term="original-work-published" text-case="capitalize-first"/ -->
+      <!-- ** not for CSL 1.0.1**; /else -->
     </choose>
   </macro>
   <macro name="edition">
@@ -1330,7 +1330,7 @@
       <if type="article article-journal article-magazine article-newspaper dataset" match="any">
         <text variable="container-title" text-case="title"/>
       </if>
-      <else-if type="speech document report manuscript article" match="any">
+      <else-if type="speech paper-conference report" match="any">
         <choose>
           <if variable="collection-editor container-author editor" match="any">
             <text variable="container-title"/>
@@ -1344,8 +1344,9 @@
         <text variable="container-title"/>
       </else-if>
       <else-if type="paper-conference broadcast post post-weblog webpage speech report" match="any">
-        <text variable="event-title" suffix=", "/>
-      </else-if>
+        <!-- ** not for CSL 1.0.1**; text variable="event-title" suffix=", "/ -->
+        <text variable="event" suffix=", "/>
+     </else-if>
       <else>
         <text variable="archive" suffix=", "/>
       </else>
@@ -1581,7 +1582,7 @@
           </choose>
           <group delimiter=", ">
             <text macro="title-and-descriptions"/>
-            <text macro="event-title"/>
+            <!-- ** not for CSL 1.0.1**; text macro="event-title"/ -->
             <text macro="container"/>
             <choose>
               <if type="book review-book article" match="any">
